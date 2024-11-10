@@ -2,7 +2,7 @@ use graph1::core::context::{GraphContext, WindowContext};
 use graph1::primitives::plane::RectArea;
 use graph1::utils::color::palettes::RetroNeon;
 use graph1::draw;
-use graph1::utils::color::adapters::{rgba_color_to_0rgb, rgba_to_0rgb};
+use graph1::utils::color::adapters::{rgba_to_0rgb};
 use graph1_wasm_demo::demo::user_data::DemoUserData;
 use minifb::{Key, Window, WindowOptions};
 
