@@ -1,0 +1,107 @@
+use graph1::core::context::{GraphContext, WindowContext};
+use graph1::primitives::plane::RectArea;
+use graph1::utils::color::palettes::RetroNeon;
+use graph1::draw;
+use graph1::utils::color::adapters::rgba_to_0rgb;
+use graph1_wasm_demo::demo::user_data::DemoUserData;
+use minifb::{Key, Window, WindowOptions};
+
+
+/// Width of the window, in pixels
+const WIN_WIDTH: u32 = 480;
+/// Height of the window, in pixels
+const WIN_HEIGHT: u32 = 240;
+
+
+fn main() {
+    println!("Hello, world!");
+
+    let mut width = WIN_WIDTH as usize;
+    let mut height = WIN_HEIGHT as usize;
+
+        // The window context
+        let mut win_ctx = WindowContext::new(
+            WIN_WIDTH,
+            WIN_HEIGHT,
+            Some(RetroNeon::CYBER_BLUE),
+            Some(RetroNeon::LASER_LIME),
+        );
+
+
+        let mut output_buf_0rgb:Vec<u32> = vec![win_ctx.background_color; win_ctx.get_buf_size()];
+
+        // Graph context
+        let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None);
+        ctx.user_data.bouncy.dx = 2;
+        ctx.user_data.bouncy.dy = 2;
+        ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Float;
+        ctx.alpha.enabled = true;
+
+
+        // Draw a rectangle of size 40x20 at the top-left corner of the window
+        draw::rectangle::filled(&mut ctx, &RectArea::new(0, 0, 40, 20, None));
+
+
+    let mut window_options:WindowOptions = WindowOptions::default();
+    window_options.resize = true;
+    window_options.scale_mode = minifb::ScaleMode::Center;
+
+
+
+    let mut window = Window::new(
+        "Graph1 - Minifb demo",
+        ctx.win.w_usize,
+        ctx.win.h_usize,
+        window_options,
+    )
+        .unwrap_or_else(|e| {
+            panic!("{}", e);
+        });
+
+    window.set_target_fps(60);
+
+
+    // MAIN LOOP
+    // **************
+    while window.is_open() && !window.is_key_down(Key::Escape) {
+        // println!(">>> frame_count: {} ", ani_ctx.frame_count);
+
+        // =====================================================================================
+        // Handle window resizing
+        // =====================================================================================
+
+        // Check if the window size has changed
+        let (new_width, new_height) = window.get_size();
+
+        if new_width  != width  || new_height  != height {
+            // Update dimensions and buffer
+            width = new_width ;
+            height = new_height;
+            ctx.resize(width as u32, height as u32);
+            output_buf_0rgb.resize(ctx.win.get_buf_size(), 0);
+
+            println!("Window resized to: {}x{}", width, height);
+        }
+
+
+
+        graph1_wasm_demo::demo::x01_bouncy::bouncy::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::x01_bouncy::bouncy_alpha_int::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::desaturate::luminance_vs_intensity::render_frame(&mut ctx);
+
+        rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
+
+
+        /* REDRAW THE MAIN WINDOW
+         ********************************************************************************************/
+        window
+            .update_with_buffer(&output_buf_0rgb, ctx.win.w_usize, ctx.win.h_usize)
+            .unwrap();
+
+        ctx.frame_count += 1;
+
+    } // main while loop
+
+
+
+}
