@@ -2,7 +2,7 @@ use graph1::core::context::{GraphContext, WindowContext};
 use graph1::primitives::plane::RectArea;
 use graph1::utils::color::palettes::RetroNeon;
 use graph1::draw;
-use graph1::utils::color::adapters::rgba_to_0rgb;
+use graph1::utils::color::adapters::{rgba_color_to_0rgb, rgba_to_0rgb};
 use graph1_wasm_demo::demo::user_data::DemoUserData;
 use minifb::{Key, Window, WindowOptions};
 
@@ -25,6 +25,12 @@ fn main() {
             WIN_HEIGHT,
             Some(RetroNeon::CYBER_BLUE),
             Some(RetroNeon::LASER_LIME),
+
+            // We can avoid using the color adapter for the output buffer if we adapt the input colors
+            // That makes alpha blending impossible though.
+            // Some(rgba_color_to_0rgb(RetroNeon::CYBER_BLUE)),
+            // Some(rgba_color_to_0rgb(RetroNeon::LASER_LIME)),
+
         );
 
 
@@ -36,7 +42,6 @@ fn main() {
         ctx.user_data.bouncy.dy = 2;
         ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Float;
         ctx.alpha.enabled = true;
-
 
         // Draw a rectangle of size 40x20 at the top-left corner of the window
         draw::rectangle::filled(&mut ctx, &RectArea::new(0, 0, 40, 20, None));
@@ -96,6 +101,9 @@ fn main() {
          ********************************************************************************************/
         window
             .update_with_buffer(&output_buf_0rgb, ctx.win.w_usize, ctx.win.h_usize)
+
+            // Use the frame_buf directly for the output without the color adapter
+            // .update_with_buffer(&ctx.frame_buf, ctx.win.w_usize, ctx.win.h_usize)
             .unwrap();
 
         ctx.frame_count += 1;
