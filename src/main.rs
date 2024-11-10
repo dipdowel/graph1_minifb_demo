@@ -90,8 +90,8 @@ fn main() {
 
 
 
-        graph1_wasm_demo::demo::x01_bouncy::bouncy::render_frame(&mut ctx);
-        // graph1_wasm_demo::demo::x01_bouncy::bouncy_alpha_int::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
+
         // graph1_wasm_demo::demo::desaturate::luminance_vs_intensity::render_frame(&mut ctx);
 
         rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
