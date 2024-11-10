@@ -34,7 +34,7 @@ fn main() {
         );
 
 
-        let mut output_buf_0rgb:Vec<u32> = vec![win_ctx.background_color; win_ctx.get_buf_size()];
+        let mut output_buf_0rgb:Vec<u32> = vec![win_ctx.background_color; win_ctx.get_num_pixels()];
 
         // Graph context
         let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None);
@@ -83,7 +83,7 @@ fn main() {
             width = new_width ;
             height = new_height;
             ctx.resize(width as u32, height as u32);
-            output_buf_0rgb.resize(ctx.win.get_buf_size(), 0);
+            output_buf_0rgb.resize(ctx.win.get_num_pixels(), 0);
 
             println!("Window resized to: {}x{}", width, height);
         }
