@@ -2,7 +2,7 @@ use graph1::core::context::{GraphContext, WindowContext};
 use graph1::primitives::plane::RectArea;
 use graph1::utils::color::palettes::RetroNeon;
 use graph1::draw;
-use graph1::utils::color::adapters::{rgba_to_0rgb};
+use graph1::utils::color::adapters::{rgba_to_0rgb, rgba_to_0rgb_unsafe};
 use graph1_wasm_demo::demo::user_data::DemoUserData;
 use minifb::{Key, Window, WindowOptions};
 
@@ -89,12 +89,17 @@ fn main() {
         }
 
 
-
-        graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
+        // ===[ DEMO SELECTION ]===========================
+        // graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_005_luminance_vs_intensity::render_frame(&mut ctx);
 
         // graph1_wasm_demo::demo::desaturate::luminance_vs_intensity::render_frame(&mut ctx);
 
+
+
+        // ===[ COLOR ADAPTER ]===========================
         rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
+        // rgba_to_0rgb_unsafe(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
 
 
         /* REDRAW THE MAIN WINDOW
