@@ -37,7 +37,7 @@ fn main() {
         let mut output_buf_0rgb:Vec<u32> = vec![win_ctx.background_color; win_ctx.get_num_pixels()];
 
         // Graph context
-        let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None);
+        let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 6);
         ctx.user_data.bouncy.dx = 2;
         ctx.user_data.bouncy.dy = 2;
         ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Float;
@@ -88,17 +88,14 @@ fn main() {
             println!("Window resized to: {}x{}", width, height);
         }
 
-
         // ===[ DEMO SELECTION ]===========================
-        // graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
-        graph1_wasm_demo::demo::d_005_luminance_vs_intensity::render_frame(&mut ctx);
-
+        graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_005_luminance_vs_intensity::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::desaturate::luminance_vs_intensity::render_frame(&mut ctx);
 
-
-
         // ===[ COLOR ADAPTER ]===========================
-        rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
+        rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,false /*, Some(1)*/);
         // rgba_to_0rgb_unsafe(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
 
 
