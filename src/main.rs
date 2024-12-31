@@ -37,8 +37,10 @@ fn main() {
         let mut output_buf_0rgb:Vec<u32> = vec![win_ctx.background_color; win_ctx.get_num_pixels()];
 
         // Graph context
-        let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 6);
-        ctx.user_data.bouncy.dx = 2;
+        let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 1);
+        // let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 1);
+
+    ctx.user_data.bouncy.dx = 2;
         ctx.user_data.bouncy.dy = 2;
         ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Float;
         ctx.alpha.enabled = true;
@@ -95,7 +97,9 @@ fn main() {
         // graph1_wasm_demo::demo::desaturate::luminance_vs_intensity::render_frame(&mut ctx);
 
         // ===[ COLOR ADAPTER ]===========================
-        rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,false /*, Some(1)*/);
+        let stats = rgba_to_0rgb(&mut output_buf_0rgb, &mut ctx.frame_buf,1,false /*, Some(1)*/);
+        // println!("[ multithreaded ] stats: {:?}", stats);
+
         // rgba_to_0rgb_unsafe(&mut output_buf_0rgb, &mut ctx.frame_buf,false);
 
 
