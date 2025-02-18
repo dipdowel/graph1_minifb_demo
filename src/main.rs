@@ -88,8 +88,9 @@ fn main() {
         // ===[ DEMO SELECTION ]===========================
         graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_004_alpha::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_005_luminance_vs_intensity::render_frame(&mut ctx);
-        // graph1_wasm_demo::demo::desaturate::luminance_vs_intensity::render_frame(&mut ctx);
+
 
         // ===[ COLOR ADAPTER ]===========================
         // let start = Instant::now();
