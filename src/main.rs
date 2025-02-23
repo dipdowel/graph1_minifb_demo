@@ -1,6 +1,7 @@
 use graph1::core::context::{GraphContext, WindowContext};
 use graph1::draw;
 use graph1::primitives::plane::RectArea;
+use graph1::primitives::point::Point;
 use graph1::utils::color::adapters::{rgba_to_0rgb, rgba_to_0rgb_unsafe};
 use graph1::utils::color::palettes::RetroNeon;
 use graph1_wasm_demo::demo::user_data::DemoUserData;
@@ -16,6 +17,32 @@ const NUM_THREADS: usize = 6;
 
 fn main() {
     println!("Hello, world!");
+
+    let x: f64 = -10.0123456789;
+    let y: f64 = 20.987654321;
+
+    // Define a point with coordinates of f64 type
+    let point_f64: Point<f64> = Point::new(x, y);
+
+    // Lose some precision when converting to `Point<f32>`
+    let point_f32: Point<f32> = point_f64.convert();
+
+    // Lose the floating-point part when converting to `Point<i32>`
+    let point_i32: Point<i32> = point_f32.convert();
+
+    // Conversion to `Point<u32>` truncates negative coordinates to zero
+    let point_u32: Point<u32> = point_i32.convert();
+
+    let another_point_u32: Point<u32> = point_f64.convert();
+
+    println!(
+        "point_f64: {:?}\n\
+        point_f32: {:?}\n\
+        point_i32: {:?}\n\
+        point_u32: {:?}\n\
+        another_point_u32: {:?}",
+        point_f64, point_f32, point_i32, point_u32, another_point_u32
+    );
 
     let mut width = WIN_WIDTH as usize;
     let mut height = WIN_HEIGHT as usize;
@@ -86,11 +113,10 @@ fn main() {
         }
 
         // ===[ DEMO SELECTION ]===========================
-        graph1_wasm_demo::demo::d_003_bouncy::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_004_bouncy::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
-        // graph1_wasm_demo::demo::d_004_alpha::render_frame(&mut ctx);
-        // graph1_wasm_demo::demo::d_005_luminance_vs_intensity::render_frame(&mut ctx);
-
+        // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
 
         // ===[ COLOR ADAPTER ]===========================
         // let start = Instant::now();
