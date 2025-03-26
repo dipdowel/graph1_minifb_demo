@@ -113,8 +113,10 @@ fn main() {
         }
 
         // ===[ DEMO SELECTION ]===========================
-        graph1_wasm_demo::demo::d_004_bouncy::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_000_intro::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_004_bouncy::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_007_shapes_and_quadrants::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
 
