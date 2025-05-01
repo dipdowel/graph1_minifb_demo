@@ -6,7 +6,7 @@ This repository renders demos from [graph1 WASM Demo](https://github.com/dipdowe
 - https://github.com/dipdowel/graph1
 - https://github.com/dipdowel/graph1_wasm_demo
 - - - - - - - -
-**NB:** This project was only tested on Linux with X11.
+**NB:** This project was tested only on Linux with X11.
 - - - - - - - - 
 
 ![project-screenshot.png](project-screenshot.png)
