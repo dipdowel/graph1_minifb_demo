@@ -63,7 +63,7 @@ fn main() {
 
     // Graph context
     let mut ctx: GraphContext<DemoUserData> =
-        GraphContext::new(win_ctx, true, false, None, NUM_THREADS);
+        GraphContext::new(win_ctx, true, false, None, NUM_THREADS, None);
     // let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 1);
 
     ctx.user_data.bouncy.dx = 2;
@@ -90,9 +90,11 @@ fn main() {
 
     window.set_target_fps(60);
 
+
     // MAIN LOOP
     // **************
     while window.is_open() && !window.is_key_down(Key::Escape) {
+
         // println!(">>> frame_count: {} ", ani_ctx.frame_count);
 
         // =====================================================================================
@@ -112,13 +114,24 @@ fn main() {
             println!("Window resized to: {}x{}", width, height);
         }
 
+
         // ===[ DEMO SELECTION ]===========================
+        // let start = Instant::now(); // Start timing
         // graph1_wasm_demo::demo::d_000_intro::render_frame(&mut ctx);
+
+        // let duration = start.elapsed(); // Measure elapsed time
+        // println!("[cube] duration:  {:?}", duration.as_micros());
+
+
         // graph1_wasm_demo::demo::d_004_bouncy::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
-        graph1_wasm_demo::demo::d_007_shapes_and_quadrants::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_007_shapes_and_quadrants::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
-        // graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
+
+
+        // let duration = start.elapsed(); // Measure elapsed time
+        // println!("Frame duration:  {:?}", duration.as_micros());
 
         // ===[ COLOR ADAPTER ]===========================
         // let start = Instant::now();
