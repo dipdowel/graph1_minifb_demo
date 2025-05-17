@@ -13,10 +13,11 @@ const WIN_WIDTH: u32 = 480;
 /// Height of the window, in pixels
 const WIN_HEIGHT: u32 = 240;
 
-const NUM_THREADS: usize = 6;
+// const NUM_THREADS: usize = 6;
+const NUM_THREADS: usize = 1;
 
 fn main() {
-    println!("Hello, world!");
+    // println!("Hello, world!");
 
     let x: f64 = -10.0123456789;
     let y: f64 = 20.987654321;
@@ -35,6 +36,7 @@ fn main() {
 
     let another_point_u32: Point<u32> = point_f64.convert();
 
+    /*
     println!(
         "point_f64: {:?}\n\
         point_f32: {:?}\n\
@@ -43,6 +45,7 @@ fn main() {
         another_point_u32: {:?}",
         point_f64, point_f32, point_i32, point_u32, another_point_u32
     );
+    */
 
     let mut width = WIN_WIDTH as usize;
     let mut height = WIN_HEIGHT as usize;
@@ -89,7 +92,7 @@ fn main() {
     });
 
     window.set_target_fps(60);
-
+    window.set_position(1800,500);
 
     // MAIN LOOP
     // **************
@@ -127,7 +130,13 @@ fn main() {
         // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_007_shapes_and_quadrants::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
-        graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
+
+        ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Int;
+        ctx.alpha.enabled = true;
+        graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
+
 
 
         // let duration = start.elapsed(); // Measure elapsed time
