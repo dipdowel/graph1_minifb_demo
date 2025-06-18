@@ -9,12 +9,12 @@ use minifb::{Key, Window, WindowOptions};
 use std::time::Instant;
 
 /// Width of the window, in pixels
-const WIN_WIDTH: u32 = 480;
+const WIN_WIDTH: u32 = 640;
 /// Height of the window, in pixels
-const WIN_HEIGHT: u32 = 240;
+const WIN_HEIGHT: u32 = 480;
 
 // const NUM_THREADS: usize = 6;
-const NUM_THREADS: usize = 1;
+const NUM_THREADS: usize = 10;
 
 fn main() {
     // println!("Hello, world!");
@@ -66,7 +66,7 @@ fn main() {
 
     // Graph context
     let mut ctx: GraphContext<DemoUserData> =
-        GraphContext::new(win_ctx, true, false, None, NUM_THREADS, None);
+        GraphContext::new(win_ctx, true, true, None, NUM_THREADS, None);
     // let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 1);
 
     ctx.user_data.bouncy.dx = 2;
@@ -92,7 +92,7 @@ fn main() {
     });
 
     window.set_target_fps(60);
-    window.set_position(1800,500);
+    window.set_position(800,500);
 
     // MAIN LOOP
     // **************
@@ -135,7 +135,11 @@ fn main() {
 
         ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Int;
         ctx.alpha.enabled = true;
-        graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
+
+        // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
 
 
 
