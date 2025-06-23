@@ -75,7 +75,10 @@ fn main() {
     ctx.alpha.enabled = true;
 
     // Draw a rectangle of size 40x20 at the top-left corner of the window
-    draw::rectangle::filled(&mut ctx, &RectArea::new(0, 0, 40, 20, None));
+    // draw::rectangle::filled(&mut ctx, &RectArea::new(0, 0, 40, 20, None));
+
+    // ctx.set_gpu_state(true);
+    // ctx.set_gpu_state(true);
 
     let mut window_options: WindowOptions = WindowOptions::default();
     window_options.resize = true;
@@ -133,10 +136,13 @@ fn main() {
         // graph1_wasm_demo::demo::d_006_luminance_vs_intensity::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_001_basic_concepts_pt1::render_frame(&mut ctx);
 
+
         ctx.alpha.method = graph1::core::context::alpha::AlphaMethod::Int;
         ctx.alpha.enabled = true;
         // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
-        graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
 
         // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
