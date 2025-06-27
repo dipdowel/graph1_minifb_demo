@@ -14,7 +14,8 @@ const WIN_WIDTH: u32 = 640;
 const WIN_HEIGHT: u32 = 480;
 
 // const NUM_THREADS: usize = 6;
-const NUM_THREADS: usize = 10;
+const NUM_THREADS: usize = 6;
+const GPU: bool = true;
 
 fn main() {
     // println!("Hello, world!");
@@ -97,6 +98,11 @@ fn main() {
     window.set_target_fps(60);
     window.set_position(800,500);
 
+
+    // NB! [ GPU ]======================================================================
+    ctx.gpu_context.set_enabled(GPU);
+    // NB! [ GPU ]======================================================================
+
     // MAIN LOOP
     // **************
     while window.is_open() && !window.is_key_down(Key::Escape) {
@@ -120,9 +126,10 @@ fn main() {
             println!("Window resized to: {}x{}", width, height);
         }
 
-
-        // ===[ DEMO SELECTION ]===========================
+        // let start = Instant::now();
         // let start = Instant::now(); // Start timing
+        // ===[ DEMO SELECTION ]===========================
+
         // graph1_wasm_demo::demo::d_000_intro::render_frame(&mut ctx);
 
         // let duration = start.elapsed(); // Measure elapsed time
@@ -143,6 +150,10 @@ fn main() {
         // graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
         graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
+
+
+        // graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
+
         // graph1_wasm_demo::demo::d_005_alpha::render_frame(&mut ctx);
 
         // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
