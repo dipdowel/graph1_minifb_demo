@@ -1,12 +1,10 @@
+use std::time::Instant;
 use graph1::core::context::{GraphContext, WindowContext};
-use graph1::draw;
-use graph1::primitives::plane::RectArea;
 use graph1::primitives::point::Point;
-use graph1::utils::color::adapters::{rgba_to_0rgb, rgba_to_0rgb_unsafe};
+use graph1::utils::color::adapters::rgba_to_0rgb;
 use graph1::utils::color::palettes::RetroNeon;
 use graph1_wasm_demo::demo::user_data::DemoUserData;
 use minifb::{Key, Window, WindowOptions};
-use std::time::Instant;
 
 /// Width of the window, in pixels
 const WIN_WIDTH: u32 = 640;
@@ -67,7 +65,7 @@ fn main() {
 
     // Graph context
     let mut ctx: GraphContext<DemoUserData> =
-        GraphContext::new(win_ctx, true, true, None, NUM_THREADS, None);
+        GraphContext::new(win_ctx, true, 1, None, NUM_THREADS, None);
     // let mut ctx:GraphContext<DemoUserData> = GraphContext::new(win_ctx,  true,false, None, 1);
 
     ctx.user_data.bouncy.dx = 2;
@@ -106,7 +104,7 @@ fn main() {
     // MAIN LOOP
     // **************
     while window.is_open() && !window.is_key_down(Key::Escape) {
-
+        // let frame_start = Instant::now();
         // println!(">>> frame_count: {} ", ani_ctx.frame_count);
 
         // =====================================================================================
@@ -126,7 +124,7 @@ fn main() {
             println!("Window resized to: {}x{}", width, height);
         }
 
-        // let start = Instant::now();
+
         // let start = Instant::now(); // Start timing
         // ===[ DEMO SELECTION ]===========================
 
@@ -149,7 +147,9 @@ fn main() {
         // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
-        graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_000_intro::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
 
 
         // graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
@@ -192,5 +192,10 @@ fn main() {
             .unwrap();
 
         ctx.frame_count += 1;
+        //
+        //
+        // println!("[frame] duration:  {:?}", frame_start.elapsed().as_micros());
+        //
+        //
     } // main while loop
 }

@@ -11,3 +11,10 @@ graph1 = { path = "../graph1" }
 #graph1 = { path = "../graph1" }
 graph1_wasm_demo = { path = "../graph1_wasm_demo" }
 
+
+[profile.release]
+debug = false
+#opt-level = 'z' # or 's' for size optimization with a balance between size and speed
+opt-level = 3 # or 's' for size optimization with a balance between size and speed
+lto=true
+
