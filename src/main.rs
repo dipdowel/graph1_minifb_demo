@@ -149,7 +149,8 @@ fn main() {
         // graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_012_grid::render_frame(&mut ctx);
         // graph1_wasm_demo::demo::d_000_intro::render_frame(&mut ctx);
-        graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
+        // graph1_wasm_demo::demo::d_014_brushes::render_frame(&mut ctx);
+        graph1_wasm_demo::demo::d_013_text::render_frame(&mut ctx);
 
 
         // graph1_wasm_demo::demo::d_015_transformations::render_frame(&mut ctx);
